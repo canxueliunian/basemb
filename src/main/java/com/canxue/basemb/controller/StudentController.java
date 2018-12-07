@@ -33,15 +33,12 @@ public class StudentController extends BaseController {
      */
     @GetMapping("getPage")
     public String getPage(PageQO<Student> pageQO) {
-        try {
-            Page<Student> page = PageHelper.startPage(pageQO.getPageNum(), pageQO.getPageSize(), pageQO.getOrderBy());
-            Student student = pageQO.getCondition();
-            studentService.queryPage(student);
-            return toJson(page);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "asa";
+
+        Page<Student> page = PageHelper.startPage(pageQO.getPageNum(), pageQO.getPageSize(), pageQO.getOrderBy());
+        Student student = pageQO.getCondition();
+        studentService.queryPage(student);
+        return toJson(page);
+
     }
 
     /**
